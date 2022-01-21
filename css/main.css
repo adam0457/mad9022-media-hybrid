@@ -2,10 +2,10 @@ html {
   box-sizing: border-box;
 }
 
-main {
-  display: grid;
-  border: .20rem solid hsl(36,100%,80%);
-  height: 70vh;
+main { 
+  display: grid; 
+  grid-template-rows: 25rem; 
+  height: 50rem;
   max-width: 50rem;
   margin: 0 auto;
 }
@@ -15,12 +15,12 @@ main {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;  
+  gap: 1rem;    
 }
 
 #playlist-area {
   background-color: blanchedalmond;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 2rem 1rem 1rem 1rem;  
 }
 
 #audio-animation {
@@ -30,10 +30,32 @@ main {
   
 }
 
+.thumbnail {
+  width: 100%;
+  max-width: 30px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 1rem;
+}
+
+li {
+  padding:;
+  display:flex;
+  justify-content: start;
+  gap:1rem;
+  margin-bottom: 1rem;
+}
+
+li .thumbnail{
+  align-self:center;
+}
+
 .playlist-wrap {
   background-color: blueviolet;
-  width: 100%;
-  height:90%;
+  overflow: auto;
 }
 
 @media only screen and (min-width:50em) {
