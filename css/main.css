@@ -24,11 +24,17 @@ main {
   /* overflow: scroll; */
 }
 
-#audio-animation {
+#progress-area {
   background-color: blueviolet;
   width: 100%;
   height:90%;
-  
+  position: relative;  
+}
+
+.progress-track {
+  position: absolute;
+  bottom: 1rem;
+  left: 5rem;
 }
 
 .thumbnail {
@@ -43,7 +49,7 @@ ul {
 }
 
 .track-playing,li {
-  padding:;
+  /* padding:; */
   display:flex;
   justify-content: start;
   gap:1rem;

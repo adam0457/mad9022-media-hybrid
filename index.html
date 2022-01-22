@@ -13,17 +13,20 @@
     <h1> An HTML5 Media Player</h1>
   </header>
   <main>
-      <section id="player-area">
-          <!-- <div id="player" class="is-playing"> -->
-            <!-- <div id="visual"> -->
+      <section id="player-area">          
               <div class="track-playing">
                   <img class="thumbnail" src="./media/yereswa.jpg" alt="track name" />
                   <p> Alan Cave - yereswa</p>
               </div>
-              <div id="audio-animation">  </div>
-            <!-- </div> -->
-            <div id="controls">
-              
+              <div id="progress-area"> 
+                <div class="progress-track">
+                  <time>00.00</time>
+                  <progress  max="100" value="45"> 45%</progress>
+                  <time>00.00</time>
+                </div>
+              </div>
+            
+            <div id="controls">              
               <button id="btn-skip-previous" class="buttons">
                 <span class="material-icons"> skip_previous </span>
               </button>
@@ -53,7 +56,7 @@
               </button>
 
             </div>
-          <!-- </div> -->
+      
       </section>
       <section id="playlist-area">
         <div class="playlist-wrap">
@@ -93,4 +96,4 @@
     lajansere - The woman hiking with a dog was published by Vladimir Kudinov on March 27, 2015.
     tousel -  The woman lying on the sofa was published by Benjamin Combs on August 7, 2015.
     yereswa - The woman riding on boat was published by Roberto Nickson on November 26, 2015.  
- -->
+-->
