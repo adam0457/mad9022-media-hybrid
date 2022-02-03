@@ -9,82 +9,82 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
 </head>
 <body>
-  <header>
-    <h1> An HTML5 Media Player</h1>
+   <header >
+    <div class="container">
+      <h1> An HTML5 Media Player</h1>
+    </div>
   </header>
   <main>
-      <section id="player-area">          
-              <div class="track-playing">
-                  <img class="thumbnail" src="./media/yereswa.jpg" alt="track name" />
-                  <p> Alan Cave - yereswa</p>
-              </div>
-              <div id="progress-area"> 
+      <div class="container container-player">
+        <section id="player-area">
+                <div class="track-playing">
+                    <img class="thumbnail" src="./media/yereswa.jpg" alt="track name" />
+                    <p> Alan Cave - yereswa</p>
+                </div>
+                <div id="audio-animation">
+                  <!-- The animation -->
+                </div>
                 <div class="progress-track">
                   <time>00.00</time>
                   <progress  max="100" value="45"> 45%</progress>
                   <time>00.00</time>
                 </div>
+        
+              <div id="controls">
+                <button id="btn-skip-previous" class="buttons">
+                  <span class="material-icons"> skip_previous </span>
+                </button>
+                <button id="btn-replay-ten" class="buttons">
+                  <span class="material-icons"> replay_10 </span>
+                </button>
+                <button id="btn-play" class="buttons">
+                  <span class="material-icons"> play_arrow </span>
+                </button>
+                <button id="btn-pause" class="buttons">
+                  <span class="material-icons"> pause </span>
+                </button>
+                <button id="btn-stop" class="buttons">
+                  <span class="material-icons"> stop </span>
+                </button>
+                <button id="btn-forward-ten" class="buttons">
+                  <span class="material-icons"> forward_10 </span>
+                </button>
+                <button id="btn-skip-next" class="buttons">
+                  <span class="material-icons"> skip_next </span>
+                </button>
               </div>
-            
-            <div id="controls">              
-              <button id="btn-skip-previous" class="buttons">
-                <span class="material-icons"> skip_previous </span>
-              </button>
-
-              <button id="btn-replay-ten" class="buttons">
-                <span class="material-icons"> replay_10 </span>
-              </button>
-
-              <button id="btn-play" class="buttons">
-                <span class="material-icons"> play_arrow </span>
-              </button>
-
-              <button id="btn-pause" class="buttons">
-                <span class="material-icons"> pause </span>
-              </button>
-
-              <button id="btn-stop" class="buttons">
-                <span class="material-icons"> stop </span>
-              </button>
-
-              <button id="btn-forward-ten" class="buttons">
-                <span class="material-icons"> forward_10 </span>
-              </button>
-
-              <button id="btn-skip-next" class="buttons">
-                <span class="material-icons"> skip_next </span>
-              </button>
-
-            </div>
-      
-      </section>
-      <section id="playlist-area">
-        <div class="playlist-wrap">
-          <ul class="list">
-            <li class="active">
-              <img class="thumbnail" src="./media/yereswa.jpg" alt="track name" />
-              <p>Alan Cave - yereswa</p>  
-            </li>
-            <li>
-              <img class="thumbnail" src="./media/coupable.jpg" alt="track name" />
-              <p>Eric Virgal - coupable</p>              
-            </li>
-            <li>
-              <img class="thumbnail" src="./media/kitemwale.jpg" alt="track name" />
-              <p>Lionel Benjamin - kitemwale</p>  
-            </li>
-            <li><img class="thumbnail" src="./media/lajansere.jpg" alt="track name" />
-              <p>Klass - Lajansere</p>  
-            </li>
-            <li>
-              <img class="thumbnail" src="./media/tousel.jpg" alt="track name" />
-              <p>Leila Chico - tousel</p>  
-            </li>
-            
+        
+        </section>
+        <section id="playlist-area">
+            <ul>
+              <li class="active">
+                <img class="thumbnail" src="./media/yereswa.jpg" alt="track name" />
+                <p><span class="artist">Alan Cave</span> - <span class="title">yereswa</span></p>
+              </li>
+              <li>
+                <img class="thumbnail" src="./media/coupable.jpg" alt="track name" />
+                <p><span class="artist">Eric Virgal</span> - <span class="title">coupable</span></p>
+              </li>
+              <li>
+                <img class="thumbnail" src="./media/kitemwale.jpg" alt="track name" />
+                <p><span class="artist">Lionel Benjamin</span> - <span class="title">kitemwale</span></p>
+              </li>
+              <li><img class="thumbnail" src="./media/lajansere.jpg" alt="track name" />
+                <p><span class="artist">Klass </span> - <span class="title">Lajansere</span></p>
+              </li>
+              <li>
+                <img class="thumbnail" src="./media/tousel.jpg" alt="track name" />
+                <p><span class="artist">Leila Chico</span> - <span class="title">tousel</span></p>
+              </li>
+                      
           </ul>
-        </div>
-      </section>
-  </main>
+    
+        </section>
+      </div>
+      <audio id="audio"></audio>
+
+  </main>    
+
 </body>
 </html>
 
@@ -95,5 +95,6 @@
     kitemwale - The evergreen forest by the lake has been published by Paul Jarvis on June, 2013.
     lajansere - The woman hiking with a dog was published by Vladimir Kudinov on March 27, 2015.
     tousel -  The woman lying on the sofa was published by Benjamin Combs on August 7, 2015.
-    yereswa - The woman riding on boat was published by Roberto Nickson on November 26, 2015.  
--->
+    yereswa - The woman riding on boat was published by Roberto Nickson on November 26, 2015.  -->
+
+
