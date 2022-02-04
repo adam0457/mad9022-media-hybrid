@@ -42,9 +42,26 @@ const APP = {
   },
 
   buildPlayList: () => { 
+    SONGS.forEach((song,index) => {
 
+      let li = document.createElement('li');
+      li.setAttribute('data-index', index)
+      li.addEventListener('click', APP.setSelectedTrack);
+      let thumbnail = document.createElement('img');
+      thumbnail.setAttribute('src',song.img);
+      thumbnail.setAttribute('alt',song.title);
+      thumbnail.classList.add('thumbnail');      
+    
+      let p = document.createElement('p');
+      p.innerHTML = `<span class = "artist"> ${song.artist}</span> -- <span class = "title"> ${song.title}</span>`;
+    
+      li.appendChild(thumbnail);
+      li.appendChild(p);
+      APP.list.append(li);
+    
+    });
   },
-  
+
   setSelectedTrack: (ev) => {},
   playPauseTrack: (ev) => {
     // if (!APP.audio.paused) return; //already playing
