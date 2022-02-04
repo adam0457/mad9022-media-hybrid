@@ -17,12 +17,12 @@
   <main>
       <div class="container container-player">
         <section id="player-area">
-                <div class="track-playing">
-                    <img class="thumbnail" src="./media/yereswa.jpg" alt="track name" />
-                    <p> Alan Cave - yereswa</p>
+                <div class="track-active">
+                   <!-- The thumbnail and the the info of the playing track at the top of the player -->
                 </div>
                 <div id="audio-animation">
-                  <!-- The animation -->
+                  <!-- The thumbnail of the playing track inside the audio-animation -->
+                  
                 </div>
                 <div class="progress-track">
                   <time id="time-update">00.00</time>
@@ -37,7 +37,7 @@
                 <button id="btn-replay-ten" class="buttons">
                   <span class="material-icons"> replay_10 </span>
                 </button>
-                <button id="btn-play-pause" class="buttons">
+                <button id="btn-play-pause" class="buttons"> <!-- This button is for play and pause action -->
                   <span id="play-pause-icon" class="material-icons"> play_arrow </span>
                 </button>
                 <!-- <button id="btn-pause" class="buttons">
@@ -57,33 +57,19 @@
         </section>
         <section id="playlist-area">
             <ul>
-              <!-- <li class="active">
-                <img class="thumbnail" src="./media/yereswa.jpg" alt="track name" />
-                <p><span class="artist">Alan Cave</span> - <span class="title">yereswa</span></p>
-              </li>
-              <li>
-                <img class="thumbnail" src="./media/coupable.jpg" alt="track name" />
-                <p><span class="artist">Eric Virgal</span> - <span class="title">coupable</span></p>
-              </li>
-              <li>
-                <img class="thumbnail" src="./media/kitemwale.jpg" alt="track name" />
-                <p><span class="artist">Lionel Benjamin</span> - <span class="title">kitemwale</span></p>
-              </li>
-              <li><img class="thumbnail" src="./media/lajansere.jpg" alt="track name" />
-                <p><span class="artist">Klass </span> - <span class="title">Lajansere</span></p>
-              </li>
-              <li>
-                <img class="thumbnail" src="./media/tousel.jpg" alt="track name" />
-                <p><span class="artist">Leila Chico</span> - <span class="title">tousel</span></p>
-              </li> -->
-                      
+                  <!-- This is where we will load the songs  -->
           </ul>
     
         </section>
       </div>
       <audio id="audio"></audio>
 
-  </main>    
+  </main> 
+  <footer>
+    <div class="container">
+      <small> adam0457 - madd9022</small>
+    </div>
+  </footer>   
 <script src="./js/main.js" type="module"></script>
 </body>
 </html>
