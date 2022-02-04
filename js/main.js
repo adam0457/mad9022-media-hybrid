@@ -80,14 +80,16 @@ const APP = {
     return;  
     
   },
-  
+
   stopTrack: (ev) => {
     APP.audio.pause();
     APP.audio.currentTime = 0;
-    APP.stopAnimations();
+    APP.playPauseIcon.textContent = 'play_arrow';
+    APP.songPlaying = true;
+    // APP.stopAnimations();
   },
-  updateCurrentTime:(ev)=>{},
-  updateTotalTime:(ev)=>{}
+  updateCurrentTime:(ev)=>{APP.timeUpdate.textContent = Math.floor(APP.audio.currentTime);},
+  updateTotalTime:(ev)=>{APP.totalTime.textContent = Math.floor(APP.audio.duration);}
 };
 
 document.addEventListener('DOMContentLoaded', APP.init);
