@@ -68,9 +68,19 @@ const APP = {
     // APP.audio.src = SONGS[APP.currentTrack].src;
     // APP.audio.play();
     // APP.startAnimations();
-
+    if(APP.songPlaying){
+      APP.audio.play();
+      APP.playPauseIcon.textContent = 'pause';
+      APP.songPlaying = !APP.songPlaying;
+      return;
+    }
+    APP.audio.pause();
+    APP.playPauseIcon.textContent = 'play_arrow';
+    APP.songPlaying = !APP.songPlaying;
+    return;  
     
   },
+  
   stopTrack: (ev) => {
     APP.audio.pause();
     APP.audio.currentTime = 0;
