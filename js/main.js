@@ -35,19 +35,20 @@ const APP = {
   },
 
   addListeners: () => {
-    APP.btnPlayPause.addEventListener('click', APP.playPauseTrack);
+    APP.btnPlayPause.addEventListener('click', APP.handlePlayPause);
     APP.btnStop.addEventListener('click', APP.stopTrack);
     APP.audio.addEventListener('timeupdate', APP.updateCurrentTime);
     APP.audio.addEventListener('durationchange', APP.updateTotalTime);
     APP.btnStop.addEventListener('click', APP.stopTrack);
+    APP.list.addEventListener('click', APP.setSelectedTrack);
   },
 
   buildPlayList: () => { 
+    let df = document.createDocumentFragment();
     SONGS.forEach((song,index) => {
 
       let li = document.createElement('li');
       li.setAttribute('data-index', index)
-      li.addEventListener('click', APP.setSelectedTrack);
       let thumbnail = document.createElement('img');
       thumbnail.setAttribute('src',song.img);
       thumbnail.setAttribute('alt',song.title);
@@ -58,9 +59,11 @@ const APP = {
     
       li.appendChild(thumbnail);
       li.appendChild(p);
-      APP.list.append(li);
+      df.appendChild(li);
+      // APP.list.append(li);
     
     });
+    APP.list.append(df);
     /** Adding the active css class to the first song in the playList */   
     APP.initFirstSong();
     APP.setActiveTrack(0);  /** Set the thumbnail at the top of the player and in the animation area */
@@ -92,19 +95,25 @@ const APP = {
   },
 
   setSelectedTrack: (ev) => {
-    if(ev.target.closest('li').classList.contains('active')){return;} /** this is to ignore the click when the user cliks on a song that is already selected */
-    APP.currentTrack = ev.currentTarget.getAttribute('data-index');    
-    document.querySelector('li.active').classList.remove('active');     
-    ev.currentTarget.classList.add('active');
-    // console.log(APP.currentTrack);
+  
+    let selectedLi = ev.target.closest('li');
+    if(selectedLi.classList.contains('active')){return;} /** this is to ignore the click when the user cliks on a song that is already selected */
+    APP.currentTrack = selectedLi.getAttribute('data-index');
+    document.querySelector('li.active').classList.remove('active'); 
+    selectedLi.classList.add('active');
     APP.audio.src = SONGS[APP.currentTrack].src;
     APP.setActiveTrack(APP.currentTrack);
-    // console.log(APP.audio.src);
-    APP.playPauseIcon.textContent = 'play_arrow';
     APP.songPlaying = true;
+    APP.playPauseTrack();  
   },
 
-  playPauseTrack: (ev) => {
+  handlePlayPause: (ev) => {
+
+    APP.playPauseTrack();
+    
+  },
+
+  playPauseTrack: () => {
     if(APP.songPlaying){
       APP.audio.play();
       APP.playPauseIcon.textContent = 'pause';
@@ -115,7 +124,6 @@ const APP = {
     APP.playPauseIcon.textContent = 'play_arrow';
     APP.songPlaying = !APP.songPlaying;
     return;  
-    
   },
 
   stopTrack: (ev) => {
