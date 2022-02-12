@@ -13,6 +13,7 @@ const APP = {
   btnStop:null,
   audioAnimation:null,
   btnNext: null,
+  btnPrevious: null,
 
   songPlaying:true,
 
@@ -29,6 +30,7 @@ const APP = {
       APP.trackActive = document.querySelector('.track-active');
       APP.audioAnimation = document.getElementById('audio-animation');
       APP.btnNext = document.getElementById('btn-skip-next');
+      APP.btnPrevious = document.getElementById('btn-skip-previous');
       
       APP.audio.src = SONGS[APP.currentTrack].src;
       APP.addListeners();
@@ -44,6 +46,7 @@ const APP = {
       APP.btnStop.addEventListener('click', APP.stopTrack);
       APP.list.addEventListener('click', APP.setSelectedTrack);
       APP.btnNext.addEventListener('click', APP.handleBtnNext);
+      APP.btnPrevious.addEventListener('click', APP.handleBtnPrevious);
   },
 
   buildPlayList: () => { 
@@ -102,12 +105,20 @@ const APP = {
     let selectedLi = ev.target.closest('li');
     if(selectedLi.classList.contains('active')){return;} /** this is to ignore the click when the user cliks on a song that is already selected */
     APP.currentTrack = selectedLi.getAttribute('data-index');
-    document.querySelector('li.active').classList.remove('active'); 
     selectedLi.classList.add('active');
+
+    APP.playSelectedTrack();
+
+  },
+
+  playSelectedTrack: () => {
+
+    document.querySelector('li.active').classList.remove('active'); 
     APP.audio.src = SONGS[APP.currentTrack].src;
     APP.setActiveTrack(APP.currentTrack);
     APP.songPlaying = true;
-    APP.playPauseTrack();  
+    APP.playPauseTrack();
+
   },
 
   handlePlayPause: (ev) => {
@@ -141,29 +152,49 @@ const APP = {
     // APP.stopAnimations();
   },
 
+  handleBtnNext: (ev) => {
+    APP.stopTrack();
+    APP.nextTrack();    
+    
+    let nextTrack = document.querySelector(`li[data-index = "${APP.currentTrack}"  ]`);
+    
+    APP.playSelectedTrack();   
+    
+    nextTrack.classList.add('active');
+
+  },
+
+  handleBtnPrevious: (ev) => {
+    APP.stopTrack();
+    APP.previousTrack();
+
+    let previousTrack = document.querySelector(`li[data-index = "${APP.currentTrack}"  ]`);
+    
+    APP.playSelectedTrack();
+    
+    previousTrack.classList.add('active');
+
+  },
+
   nextTrack: () => {
     let len = SONGS.length; //get length of array
+    
     APP.currentTrack++; //increment the currentTrack number
+
     if (APP.currentTrack >= len) {
       //if the current track number is greater than or equal to the length
       APP.currentTrack = 0;
     }
-  },
-
-  handleBtnNext: (ev) => {
-    APP.stopTrack();
-    APP.nextTrack();
-    // console.log(APP.currentTrack);
-    document.querySelector('li.active').classList.remove('active'); 
-    console.log(APP.currentTrack);
-    let nextTrack = document.querySelector(`li[data-index = "${APP.currentTrack}"  ]`);
     
-    nextTrack.classList.add('active');
-    APP.audio.src = SONGS[APP.currentTrack].src;
-    APP.setActiveTrack(APP.currentTrack);
-    APP.songPlaying = true;
-    APP.playPauseTrack();
+  }, 
 
+  previousTrack: () => {
+    let len = SONGS.length; 
+    APP.currentTrack--; 
+    if (APP.currentTrack < 0) {
+      
+      APP.currentTrack = len - 1;
+    }
   },
 
   updateCurrentTime:(ev)=>{APP.timeUpdate.textContent = Math.floor(APP.audio.currentTime);},
