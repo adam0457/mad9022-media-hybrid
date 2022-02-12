@@ -14,8 +14,10 @@ const APP = {
   audioAnimation:null,
   btnNext: null,
   btnPrevious: null,
+  btnForwardTen: null,
+  btnReplayTen: null,
 
-  songPlaying:true,
+  songPlaying: false,
 
   currentTrack: 0,
   init: () => {
@@ -31,6 +33,9 @@ const APP = {
       APP.audioAnimation = document.getElementById('audio-animation');
       APP.btnNext = document.getElementById('btn-skip-next');
       APP.btnPrevious = document.getElementById('btn-skip-previous');
+      APP.btnForwardTen = document.getElementById('btn-forward-ten');
+      APP.btnReplayTen = document.getElementById('btn-replay-ten');
+
       
       APP.audio.src = SONGS[APP.currentTrack].src;
       APP.addListeners();
@@ -47,6 +52,8 @@ const APP = {
       APP.list.addEventListener('click', APP.setSelectedTrack);
       APP.btnNext.addEventListener('click', APP.handleBtnNext);
       APP.btnPrevious.addEventListener('click', APP.handleBtnPrevious);
+      APP.btnForwardTen.addEventListener('click', APP.handleBtnForwardTen);
+      APP.btnReplayTen.addEventListener('click', APP.handleBtnReplayTen);
   },
 
   buildPlayList: () => { 
@@ -116,7 +123,7 @@ const APP = {
     document.querySelector('li.active').classList.remove('active'); 
     APP.audio.src = SONGS[APP.currentTrack].src;
     APP.setActiveTrack(APP.currentTrack);
-    APP.songPlaying = true;
+    APP.songPlaying = false;
     APP.playPauseTrack();
 
   },
@@ -128,7 +135,7 @@ const APP = {
   },
 
   playPauseTrack: () => {
-    if(APP.songPlaying){
+    if(APP.songPlaying === false){
       APP.audio.play();
       APP.playPauseIcon.textContent = 'pause';
       APP.songPlaying = !APP.songPlaying;
@@ -148,7 +155,7 @@ const APP = {
     APP.audio.pause();
     APP.audio.currentTime = 0;
     APP.playPauseIcon.textContent = 'play_arrow';
-    APP.songPlaying = true;
+    APP.songPlaying = false;
     // APP.stopAnimations();
   },
 
@@ -194,6 +201,45 @@ const APP = {
     if (APP.currentTrack < 0) {
       
       APP.currentTrack = len - 1;
+    }
+  },
+
+  handleBtnForwardTen: (ev) => {
+
+    if(APP.songPlaying){
+      
+      APP.forwardTen();
+      
+    }else {
+      APP.playPauseTrack();
+    }
+    
+  },
+  
+  forwardTen: () => {
+    let duration = APP.audio.duration;
+    APP.audio.currentTime = APP.audio.currentTime + 10;
+    
+    if (APP.audio.currentTime >= duration) {
+      APP.audio.currentTime = duration;
+      APP.playPauseIcon.textContent = 'play_arrow';
+      APP.songPlaying = false;
+    }
+  },
+
+  handleBtnReplayTen: (ev) => {
+    if(APP.songPlaying){
+      
+      APP.replayTen();
+    }
+  },
+
+  replayTen: () => {
+    APP.audio.currentTime = APP.audio.currentTime - 10;
+    
+    if (APP.audio.currentTime <= 0) {
+      APP.audio.currentTime = 0;
+      APP.playPauseIcon.textContent = 'pause';
     }
   },
 
