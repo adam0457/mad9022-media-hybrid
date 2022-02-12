@@ -12,6 +12,7 @@ const APP = {
   playPauseIcon:null,
   btnStop:null,
   audioAnimation:null,
+  btnNext: null,
 
   songPlaying:true,
 
@@ -27,6 +28,7 @@ const APP = {
       APP.btnStop =  document.getElementById('btn-stop');
       APP.trackActive = document.querySelector('.track-active');
       APP.audioAnimation = document.getElementById('audio-animation');
+      APP.btnNext = document.getElementById('btn-skip-next');
       
       APP.audio.src = SONGS[APP.currentTrack].src;
       APP.addListeners();
@@ -35,12 +37,13 @@ const APP = {
   },
 
   addListeners: () => {
-    APP.btnPlayPause.addEventListener('click', APP.handlePlayPause);
-    APP.btnStop.addEventListener('click', APP.stopTrack);
-    APP.audio.addEventListener('timeupdate', APP.updateCurrentTime);
-    APP.audio.addEventListener('durationchange', APP.updateTotalTime);
-    APP.btnStop.addEventListener('click', APP.stopTrack);
-    APP.list.addEventListener('click', APP.setSelectedTrack);
+      APP.btnPlayPause.addEventListener('click', APP.handlePlayPause);
+      APP.btnStop.addEventListener('click', APP.handleStopBtn);
+      APP.audio.addEventListener('timeupdate', APP.updateCurrentTime);
+      APP.audio.addEventListener('durationchange', APP.updateTotalTime);
+      APP.btnStop.addEventListener('click', APP.stopTrack);
+      APP.list.addEventListener('click', APP.setSelectedTrack);
+      APP.btnNext.addEventListener('click', APP.handleBtnNext);
   },
 
   buildPlayList: () => { 
@@ -126,13 +129,43 @@ const APP = {
     return;  
   },
 
-  stopTrack: (ev) => {
+  handleStopBtn: (ev) => {
+    APP.stopTrack();
+  },
+
+  stopTrack: () => {
     APP.audio.pause();
     APP.audio.currentTime = 0;
     APP.playPauseIcon.textContent = 'play_arrow';
     APP.songPlaying = true;
     // APP.stopAnimations();
   },
+
+  nextTrack: () => {
+    let len = SONGS.length; //get length of array
+    APP.currentTrack++; //increment the currentTrack number
+    if (APP.currentTrack >= len) {
+      //if the current track number is greater than or equal to the length
+      APP.currentTrack = 0;
+    }
+  },
+
+  handleBtnNext: (ev) => {
+    APP.stopTrack();
+    APP.nextTrack();
+    // console.log(APP.currentTrack);
+    document.querySelector('li.active').classList.remove('active'); 
+    console.log(APP.currentTrack);
+    let nextTrack = document.querySelector(`li[data-index = "${APP.currentTrack}"  ]`);
+    
+    nextTrack.classList.add('active');
+    APP.audio.src = SONGS[APP.currentTrack].src;
+    APP.setActiveTrack(APP.currentTrack);
+    APP.songPlaying = true;
+    APP.playPauseTrack();
+
+  },
+
   updateCurrentTime:(ev)=>{APP.timeUpdate.textContent = Math.floor(APP.audio.currentTime);},
   updateTotalTime:(ev)=>{APP.totalTime.textContent = Math.floor(APP.audio.duration);}
 };
