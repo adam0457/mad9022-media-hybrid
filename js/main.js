@@ -47,6 +47,7 @@ const APP = {
       APP.btnPlayPause.addEventListener('click', APP.handlePlayPause);
       APP.btnStop.addEventListener('click', APP.handleStopBtn);
       APP.audio.addEventListener('timeupdate', APP.updateCurrentTime);
+      APP.audio.addEventListener('ended', APP.handleEndedSong);
       APP.audio.addEventListener('durationchange', APP.updateTotalTime);
       APP.btnStop.addEventListener('click', APP.stopTrack);
       APP.list.addEventListener('click', APP.setSelectedTrack);
@@ -215,7 +216,7 @@ const APP = {
     
     if (APP.audio.currentTime >= duration) {
       APP.audio.currentTime = duration;
-      APP.playNextTrack();     
+      // The ended event will be triggered and the player will start the next song automatically    
     }
   },
 
@@ -227,6 +228,10 @@ const APP = {
     APP.playSelectedTrack();   
     
     nextTrack.classList.add('active');
+  },
+
+  handleEndedSong: (ev) => {
+    APP.playNextTrack();
   },
 
   handleBtnReplayTen: (ev) => {
