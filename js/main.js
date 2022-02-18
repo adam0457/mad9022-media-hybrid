@@ -161,14 +161,7 @@ const APP = {
 
   handleBtnNext: (ev) => {
     APP.stopTrack();
-    APP.nextTrack();    
-    
-    let nextTrack = document.querySelector(`li[data-index = "${APP.currentTrack}"  ]`);
-    
-    APP.playSelectedTrack();   
-    
-    nextTrack.classList.add('active');
-
+    APP.playNextTrack();
   },
 
   handleBtnPrevious: (ev) => {
@@ -211,7 +204,7 @@ const APP = {
       APP.forwardTen();
       
     }else {
-      APP.playPauseTrack();
+        APP.audio.currentTime = 0;
     }
     
   },
@@ -222,9 +215,18 @@ const APP = {
     
     if (APP.audio.currentTime >= duration) {
       APP.audio.currentTime = duration;
-      APP.playPauseIcon.textContent = 'play_arrow';
-      APP.songPlaying = false;
+      APP.playNextTrack();     
     }
+  },
+
+  playNextTrack: () => {
+    APP.nextTrack();    
+    
+    let nextTrack = document.querySelector(`li[data-index = "${APP.currentTrack}"  ]`);
+    
+    APP.playSelectedTrack();   
+    
+    nextTrack.classList.add('active');
   },
 
   handleBtnReplayTen: (ev) => {
