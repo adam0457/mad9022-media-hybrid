@@ -16,6 +16,7 @@ const APP = {
   btnPrevious: null,
   btnForwardTen: null,
   btnReplayTen: null,
+  progressBar:null,
 
   songPlaying: false,
 
@@ -35,6 +36,7 @@ const APP = {
       APP.btnPrevious = document.getElementById('btn-skip-previous');
       APP.btnForwardTen = document.getElementById('btn-forward-ten');
       APP.btnReplayTen = document.getElementById('btn-replay-ten');
+      APP.progressBar = document.querySelector('progress');
 
       
       APP.audio.src = SONGS[APP.currentTrack].src;
@@ -250,8 +252,30 @@ const APP = {
     }
   },
 
-  updateCurrentTime:(ev)=>{APP.timeUpdate.textContent = Math.floor(APP.audio.currentTime);},
-  updateTotalTime:(ev)=>{APP.totalTime.textContent = Math.floor(APP.audio.duration);}
+  updateCurrentTime:(ev)=>{
+    let seconds = Math.floor(APP.audio.currentTime);
+    // APP.timeUpdate.textContent = Math.floor(APP.audio.currentTime);
+    if(seconds > 0){
+
+      APP.progressBar.value = (APP.audio.currentTime / APP.audio.duration) * 100;
+    }
+    APP.timeUpdate.textContent = APP.formatTime(seconds);
+    // console.log(APP.progressBar.value);
+  },
+  updateTotalTime:(ev)=>{
+    let seconds = Math.floor(APP.audio.duration);
+    APP.totalTime.textContent = APP.formatTime(seconds);
+    // APP.totalTime.textContent = Math.floor(APP.audio.duration);
+  },
+
+  formatTime:(seconds)=>{
+
+      let mins = Math.floor(seconds / 60);
+      let secs = Math.floor(seconds % 60);
+      let output = mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+      return output;     
+  }
+
 };
 
 document.addEventListener('DOMContentLoaded', APP.init);
