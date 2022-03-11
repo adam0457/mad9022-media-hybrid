@@ -85,10 +85,12 @@ const APP = {
     APP.setActiveTrack(0);  /** Set the thumbnail at the top of the player and in the animation area */
     
   },
+
   initFirstSong:()=>{
     let firstSong = APP.list.querySelector('li');
     firstSong.classList.add('active');
   },
+
   setActiveTrack:(track)=>{
     /** Putting the thumbnail, the artist and the title of the current track at the top of the player */
     let imgFirstSong = document.createElement('img');
@@ -115,14 +117,15 @@ const APP = {
     let selectedLi = ev.target.closest('li');
     if(selectedLi.classList.contains('active')){return;} /** this is to ignore the click when the user cliks on a song that is already selected */
     APP.currentTrack = selectedLi.getAttribute('data-index');
-    selectedLi.classList.add('active');
 
-    APP.playSelectedTrack();
+    APP.playSelectedTrack();   
+    
+    selectedLi.classList.add('active');  
 
   },
 
   playSelectedTrack: () => {
-
+  
     document.querySelector('li.active').classList.remove('active'); 
     APP.audio.src = SONGS[APP.currentTrack].src;
     APP.setActiveTrack(APP.currentTrack);
