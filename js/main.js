@@ -145,6 +145,7 @@ const APP = {
       APP.audio.play();
       APP.playPauseIcon.textContent = 'pause';
       APP.songPlaying = !APP.songPlaying;
+      APP.audioAnimation.classList.add('is-playing');
       return;
     }
     APP.audio.pause();
@@ -162,7 +163,7 @@ const APP = {
     APP.audio.currentTime = 0;
     APP.playPauseIcon.textContent = 'play_arrow';
     APP.songPlaying = false;
-    // APP.stopAnimations();
+    APP.audioAnimation.classList.remove('is-playing');
   },
 
   handleBtnNext: (ev) => {
