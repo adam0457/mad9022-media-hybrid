@@ -149,6 +149,7 @@ const APP = {
       return;
     }
     APP.audio.pause();
+    APP.audioAnimation.classList.remove('is-playing');
     APP.playPauseIcon.textContent = 'play_arrow';
     APP.songPlaying = !APP.songPlaying;
     return;  
