@@ -16,9 +16,12 @@ const APP = {
   btnPrevious: null,
   btnForwardTen: null,
   btnReplayTen: null,
-  progressBar:null,
+  btnMute:null,
+  muteIcon:null,
+  progressBar:null,  
 
   songPlaying: false,
+  isMuted:false,
 
   currentTrack: 0,
   init: () => {
@@ -36,6 +39,8 @@ const APP = {
       APP.btnPrevious = document.getElementById('btn-skip-previous');
       APP.btnForwardTen = document.getElementById('btn-forward-ten');
       APP.btnReplayTen = document.getElementById('btn-replay-ten');
+      APP.btnMute = document.getElementById('btn-mute');
+      APP.muteIcon = document.getElementById('mute-icon');
       APP.progressBar = document.querySelector('progress');
 
       
@@ -57,6 +62,7 @@ const APP = {
       APP.btnPrevious.addEventListener('click', APP.handleBtnPrevious);
       APP.btnForwardTen.addEventListener('click', APP.handleBtnForwardTen);
       APP.btnReplayTen.addEventListener('click', APP.handleBtnReplayTen);
+      APP.btnMute.addEventListener('click', APP.handleBtnMute);
   },
 
   buildPlayList: () => { 
@@ -279,6 +285,20 @@ const APP = {
       let secs = Math.floor(seconds % 60);
       let output = mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
       return output;     
+  },
+
+  handleBtnMute:(ev) => {
+    
+    if(!APP.isMuted){
+      
+      APP.muteIcon.textContent = "mic_off"
+      APP.isMuted = !APP.isMuted;
+            
+    }else{
+      APP.muteIcon.textContent = "mic"
+      APP.isMuted = !APP.isMuted;
+    }
+    APP.audio.muted = !APP.audio.muted;
   }
 
 };
