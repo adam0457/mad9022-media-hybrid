@@ -127,12 +127,12 @@ progress::-moz-progress-bar {
 }
 
 button {
-  width: 3rem;
   border: 0rem;
   border-radius: .5rem;
   background-color: hsl(50,99%,82%);
-  padding-top: .5rem;
-  padding-bottom: .5rem;
+  padding: 0.5rem .75rem;
+  /* padding-top: .5rem; */
+  /* padding-bottom: .5rem; */
 }
 
 button:hover, button:focus{
