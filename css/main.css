@@ -69,6 +69,29 @@ header, footer {
   margin-bottom: 1rem;
 }
 
+#audio-animation.is-playing img {
+  width: 100%;
+  animation-direction: alternate;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-name: trackPlaying;
+}
+
+@keyframes trackPlaying {
+  0% {
+    opacity: .25;
+  }
+  50% {
+    opacity: .50;
+  }
+  75% {
+    opacity: .75;
+  } 
+  100% {
+    opacity: 1;
+  } 
+}
+
 .visual {
   width: 100%;
 }
