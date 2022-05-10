@@ -42,15 +42,15 @@ header, footer {
 }
 
 .container {
-  max-width: 25rem;
+  max-width: 23rem;
   margin: 0 auto;
   text-align: center;
 }
 
 .container-player {
   display: grid; 
-  grid-template-rows: 30rem; 
-  box-shadow: 0px 0px 8px hsl(189,100%,16%);
+  grid-template-rows: 26rem; 
+  box-shadow: 0px 0px 8px hsl(189,100%,16%); 
 }
 
 /*---------- Player ----------*/
@@ -63,14 +63,10 @@ header, footer {
 }
 
 #audio-animation {
-  background-color: hsl(189,100%,66%);
-  width: 100%;
-  height:50%;
-  margin-bottom: 1rem;
+  width: 100%;  
 }
 
-#audio-animation.is-playing img {
-  width: 100%;
+#audio-animation.is-playing img { 
   animation-direction: alternate;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
@@ -99,7 +95,7 @@ header, footer {
 .progress-track {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; 
   width: 100%;  
 }
 /* Styling the progress bar */
@@ -130,9 +126,7 @@ button {
   border: 0rem;
   border-radius: .5rem;
   background-color: hsl(50,99%,82%);
-  padding: 0.5rem .75rem;
-  /* padding-top: .5rem; */
-  /* padding-bottom: .5rem; */
+  padding: 0.1rem .5rem; 
 }
 
 button:hover, button:focus{
@@ -160,6 +154,8 @@ ul {
 }
 
 .track-active {
+  background-color: hsl(189,100%,41%);
+  width: 100%;
   display:flex;
   justify-content: start;
   gap:1rem;
@@ -170,15 +166,7 @@ li {
   display:flex;
   justify-content: start;
   gap:1rem;
-  color: hsl(50,99%,82%);
-}
-
-.track-active {
-  background-color: hsl(189,100%,41%);
-}
-
-li .thumbnail{
-  align-self:center;
+  color: hsl(50,99%,82%);  
 }
 
 li.active{
@@ -190,6 +178,23 @@ li.active{
 }
 
 /*---------- Large Screen ----------*/
+
+@media only screen and (max-height:27em) { 
+
+  .container-player {     
+    font-size: .85rem;
+    display: grid;
+    grid-template-rows: 22rem;    
+    grid-template-columns: 1fr 1fr;
+    max-width: 36rem;
+  }
+
+  button {   
+    padding: 0.1rem .2rem;    
+  }  
+
+}
+
 @media only screen and (min-width:60em) {
 
   html {
@@ -198,7 +203,8 @@ li.active{
   .container-player {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: 50rem;
+    max-width: 45rem;
   }
 
 }
+
